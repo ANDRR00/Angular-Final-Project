@@ -1,0 +1,319 @@
+.mainContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  align-items: center;
+  padding: 15px;
+
+  .headLine {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 25px;
+  }
+
+  .ticketList {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 55px;
+    align-items: center;
+    justify-content: space-between;
+
+    .ticket {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      gap: 55px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px;
+      background-color: rgb(127, 231, 231);
+      border-radius: 12px;
+
+      .leftSide, .middleSide{
+        display: flex;
+        flex-direction: column;
+      }
+
+      .collapseBtn {
+        width: 80px;
+        height: 45px;
+        border: none;
+        border-radius: 9px;
+        background-color: rgb(164, 206, 195);
+        color: white;
+        cursor: pointer;
+
+        #collapse {
+          width: 30px;
+          height: 30px;
+          transition: transform 0.3s;
+        }
+
+        .rotated {
+          transform: rotate(90deg);
+        }
+
+        &:hover {
+          background-color: rgb(108, 138, 130);
+        }
+      }
+    }
+  }
+
+  .routeInfo {
+    padding: 10px;
+    background-color: rgb(200, 200, 200);
+    border-radius: 10px;
+
+    .vagonInfo {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 10px;
+      gap: 15px;
+
+      .vagonClass {
+          font-weight: bold;
+      }
+
+      .seatBtns {
+        display: flex;
+        gap: 5px;
+        
+        button {
+          padding: 5px;
+          border: none;
+          border-radius: 5px;
+          background-color: rgb(150, 150, 150);
+          color: white;
+          cursor: pointer;
+
+          &.selected {
+              background-color: rgb(100, 100, 255);
+          }
+
+          &:hover {
+              background-color: rgb(120, 120, 255);
+          }
+        }
+      }
+      
+
+      .buyTicket {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #00cec9;
+        color: white;
+        cursor: pointer;
+        font-size: 16px;
+
+        &:hover {
+          background-color: #00b894;
+        }
+      }
+    }
+
+
+  }
+
+  .popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 888;
+    width: 800px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    font-size: 23px;
+
+    .contactInfo{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-around;
+      height: 85px;
+
+      form{
+        height: 90px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .inputs{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+
+        input {
+          width: 230px;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          font-size: 16px;
+        }
+
+      }
+
+      button{
+        width: 120px;
+        height: 40px;
+        border: none;
+        border-radius: 5px;
+        background-color: #00cec9;
+        color: white;
+        cursor: pointer;
+        &:hover{
+          background-color: #02b4b1;
+        }
+      }
+      
+    }
+
+    .productInfo{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-around;
+
+      .productLeft, .productRight{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+      }
+
+      .vertical-line {
+        border: none;
+        border-left: 1px solid #ccc;
+        height: 100px;
+        align-self: stretch;
+        margin: 0 20px;
+      }
+
+    }
+
+    .buySection{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+
+      button{
+        width: 120px;
+        height: 45px;
+        border: none;
+        border-radius: 10px;
+        font-weight: bold;
+        cursor: pointer;
+
+        &:hover{
+          background-color: #b9b9b9;
+        }
+      }
+    }
+  }
+
+  .cardPopup{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 888;
+    width: 900px;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    font-size: 20px;
+
+    #card, #owner{
+      display: flex;
+      flex-direction: column;
+      align-items: safe;
+      justify-content: start;
+
+      input{
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+    }
+
+    .otherInfo{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+
+      #cardDate, #cvcs{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        input{
+          width: 420px;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          font-size: 16px;
+        }
+      }
+    }
+
+    .finalBuySection{
+      display: flex;
+      flex-direction: row;
+      justify-content: end;
+      align-items: center;
+      margin-top: 20px;
+
+      .finalBuy{
+        width: 90px;
+        height: 35px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        background-color: #00cec9;
+        color: white;
+  
+        &:hover{
+          background-color: #02b4b1;
+        }
+      }
+    }
+
+
+  }
+
+  .cardPopup input[type="number"]::-webkit-inner-spin-button,
+  .cardPopup input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}

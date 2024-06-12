@@ -1,0 +1,128 @@
+<div class="mainContainer">
+    <div class="headLine">
+        <h1>Tickets</h1>
+    </div>
+    <div class="ticketList" *ngFor="let item of departures">
+        <div class="ticket">
+            <div class="leftSide">
+                <div class="expressnumber">
+                    <p>#{{item.number}}</p>
+                </div>
+                <div class="route">
+                    <p>{{item.name}} Express</p>
+                </div>
+            </div>
+            <div class="middleSide">
+                <div class="from">
+                    <p>ქალაქი: {{item.from}}</p>
+                </div>
+                <div class="departureTime">
+                    <p>გასვლის დრო: {{item.departure}}</p>
+                </div>
+            </div>
+            <div class="rightSide">
+                <div class="to">
+                    <p>ქალაქი: {{item.to}}</p>
+                </div>
+                <div class="arriveTime">
+                    <p>ჩასვლის დრო: {{item.arrive}}</p>
+                </div>
+            </div>
+
+            <button class="collapseBtn" (click)="collapseItems(item)">
+                <img [class.rotated]="item.collapsed" id="collapse" src="../assets/photos/collapse.png" alt="">
+            </button>
+        </div>
+
+        <div class="routeInfo" *ngIf="item.collapsed">
+            <p>Additional details for {{item.arrive}} Express</p>
+            <div *ngIf="item.id === trainId">
+                <div class="vagonInfo" *ngFor="let vagon of filteredVagonList">
+                    <div class="infoDiv">
+                        <div class="vagonClass">
+                            <p>{{vagon.name}}</p>
+                        </div>
+                        <div class="seatBtns">
+                            <button *ngFor="let seat of vagon.seats" 
+                                    (click)="selectSeat(vagon, seat)"
+                                    [class.selected]="seat.selected">
+                                {{seat.number}}
+                            </button>
+                        </div>
+                        <button class="buyTicket" (click)="buyTicket(item, vagon)">Buy Now!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup" *ngIf="showPopup">
+        <div class="contactInfo">
+            <form #popupForm="ngForm" (ngSubmit)="saveUserInfo()" novalidate>
+                <div class="inputs">
+                    <div class="form-group">
+                        <label for="userEmail">Email:</label>
+                        <input type="email" id="userEmail" name="userEmail" [(ngModel)]="userEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="userTel">Telephone:</label>
+                        <input type="tel" id="userTel" name="userTel" [(ngModel)]="userTelephone" required pattern="[0-9]*">
+                    </div>
+                </div>
+                <button id="firstBuy" type="submit" [disabled]="!popupForm.valid">BUY</button>
+            </form>
+        </div>
+        <div class="productInfo">
+            <div class="productLeft">
+                <div class="departureNum">
+                    #{{selectedTicket?.number}}
+                </div>
+                <div class="departureRoute">
+                    {{selectedTicket?.name}}
+                </div>
+            </div>
+            <hr class="vertical-line">
+            <div class="productRight">
+                <div *ngFor="let seat of selectedSeatsForVagon">
+                    <div class="vagonNum">
+                        <p>Seat ID: {{seat.number}}</p>
+                    </div>
+                    <div class="vagonId">
+                        <p>Vagon ID: {{seat.vagonId}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="cardPopup" *ngIf="showCardPopup">
+        <h3>Book Desired Train Ticket</h3>
+        <form (ngSubmit)="finalBuy()" #reservationForm="ngForm">
+            <div class="form-group" id="owner">
+                <label for="userCard">Card Number:</label>
+                <input type="number" id="userCard" name="userCard" [(ngModel)]="userData.userCard" required pattern="[0-9]*">
+            </div>
+            <div class="otherInfo">
+                <div class="form-group" id="cardDate">
+                    <label for="cardTime">Card Expiry:</label>
+                    <input type="text" id="cardTime" name="cardTime" [(ngModel)]="userData.cardTime" required>
+                </div>
+                <div class="form-group" id="cvcs">
+                    <label for="cvc">CVC / CVV:</label>
+                    <input type="number" id="cvc" name="cvc" [(ngModel)]="userData.cvc" required pattern="[0-9]*">
+                </div>
+            </div>
+            <div class="form-group" id="owner">
+                <label for="ownerCred">Card Owner:</label>
+                <input type="text" id="ownerCred" name="ownerCred" [(ngModel)]="userData.ownerCred" required>
+            </div>
+            <div class="finalBuySection">
+                <button type="submit" class="finalBuy" [disabled]="!reservationForm.valid">Submit</button>
+            </div>
+        </form>
+    </div>
+    
+
+</div>
+

@@ -1,0 +1,50 @@
+<div *ngIf="formStatus else elseBlock">
+  <button class="delete-all-button" *ngIf="tickets.length > 0" (click)="deleteAllTickets()">Delete All Tickets <img src="../assets/photos/deleteAll.png" alt=""></button>
+
+  <div *ngFor="let formData of tickets; let i = index" class="ticket-container" [id]="'ticket-container-' + i">
+    <div class="ticket-header">
+      <h2>Ticket Information</h2>
+      <button class="delete-button" (click)="deleteTicket(i)">Delete This Ticket <img src="../assets/photos/delete.png" alt=""></button> <!-- Pass index to deleteTicket -->
+    </div>
+
+    <div id="ticket-contact">
+      <h3>Contact Information</h3>
+      <p><strong>Email:</strong> {{ formData.userEmail }}</p>
+      <p><strong>Telephone:</strong> {{ formData.userTelephone }}</p>
+    </div>
+
+    <div id="ticket-route" class="selected-ticket">
+      <h3>Selected Route</h3>
+      <p><strong>Train number:</strong> #{{ formData.selectedTicket?.number }}</p>
+      <p><strong>Route name:</strong> {{ formData.selectedTicket?.name }}</p>
+      <p><strong>Departure day:</strong> {{ formData.selectedTicket?.date }}</p>
+    </div>
+
+    <div id="ticket-vagon" class="selected-vagon">
+      <h3>Selected Vagon</h3>
+      <p><strong>Vagon ID:</strong> {{ formData.selectedVagon?.id }}</p>
+      <p><strong>Vagon Name:</strong> {{ formData.selectedVagon?.name }}</p>
+    </div>
+
+    <div id="ticket-seats" class="selected-seats">
+      <h3>Selected Seats</h3>
+      <div *ngFor="let seat of formData.selectedSeats">
+        <p><strong>Seat Number:</strong> {{ seat.number }}</p>
+        <p><strong>Seat Price:</strong> {{ seat.price }}</p>
+        <p><strong>Seat ID:</strong> {{ seat.seatId }}</p>
+      </div>
+    </div>
+
+    <button id="pdfbtn" (click)="generatePDF(i)">download pdf file <img src="../assets/photos/download-white.png" alt=""></button>
+  </div>
+</div>
+
+
+
+<ng-template #elseBlock>
+  <div class="no-tickets">
+    <p class="first">You have not bought tickets yet!</p>
+    <p class="second">Use our page to purchase tickets to any place of your choice!</p>
+    <p class="third">Happy journey!</p>
+  </div>
+</ng-template>

@@ -1,0 +1,30 @@
+<div class="reservation-form">
+    <div class="form-container">
+        <h3>Book Desired Train Ticket</h3>
+
+        <div class="Form">
+            <form action="" (ngSubmit)="onSubmit()">
+                <div class="from-where">
+                    <select [(ngModel)]="heroData.from" [ngModelOptions]="{standalone:true}">
+                        <option value="" disabled hidden>from where</option>
+                        <option *ngFor="let station of stations" [value]="station.name">{{station.name}}</option>
+                    </select>
+                </div>
+                <div class="where">
+                    <select [(ngModel)]="heroData.to" [ngModelOptions]="{standalone:true}" >
+                        <option value="" disabled hidden>to where</option>
+                        <option *ngFor="let station of stations" [value]="station.name">{{station.name}}</option>
+                    </select>
+                </div>
+                <div class="departure-date">
+                    <input type="date" class="date" id="date" [(ngModel)]="heroData.date" name="date">
+                </div>
+                <div class="btn">
+                    <button type="submit" [routerLink]="['/trainList']" (click)="sendData()">Find a Train</button>
+                </div>
+            </form>
+        </div>
+        
+
+    </div>
+</div>
